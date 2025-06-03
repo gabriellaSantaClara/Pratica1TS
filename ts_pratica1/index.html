@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <title>Lembretes com TypeScript</title>
-  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <h1>Lembretes</h1>
+<body style="font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto;">
 
-  <form id="reminder-form">
-    <input type="text" id="title" placeholder="Digite o título" required />
-    <button type="submit">Adicionar</button>
+  <h1 style="margin-bottom: 20px;">Lembretes</h1>
+
+  <form id="reminder-form" style="margin-bottom: 20px;">
+    <input type="text" id="title" placeholder="Digite o título" required
+      style="padding: 8px; margin-right: 10px; width: 250px;" />
+    <button type="submit" style="padding: 8px 12px;">Adicionar</button>
   </form>
 
-  <ul id="reminder-list"></ul>
+  <ul id="reminder-list" style="list-style: none; padding: 0;"></ul>
 
   <script src="app.js"></script>
 </body>
