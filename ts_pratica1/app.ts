@@ -1,47 +1,48 @@
-type Reminder = {
+type lembrete = {
   id: number;
   title: string;
-  createdAt: Date;
+  date: Date;
 };
 
-let reminders: Reminder[] = [];
+let arrayLembrete: lembrete[] = [];
 
-const form = document.getElementById('reminder-form') as HTMLFormElement;
-const list = document.getElementById('reminder-list') as HTMLUListElement;
+var form = document.getElementById('reminder-form') as HTMLFormElement;
+var list = document.getElementById('reminder-list') as HTMLUListElement;
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const titleInput = document.getElementById('title') as HTMLInputElement;
+  var titleInput = document.getElementById('title') as HTMLInputElement;
   const title = titleInput.value.trim();
-  if (!title) return;
-
-  const newReminder: Reminder = {
+  
+  const newReminder: lembrete = {
     id: Date.now(),
     title,
-    createdAt: new Date()
+    date: new Date()
   };
 
-  reminders.push(newReminder);
-  renderReminders();
+  arrayLembrete.push(newReminder);
+  render();
   form.reset();
 });
 
-function renderReminders() {
+function render() {
   list.innerHTML = '';
-  reminders.forEach((reminder) => {
+  arrayLembrete.forEach((lembrete) => {
     const li = document.createElement('li');
+    //console.log('aqui');
+
     li.innerHTML = `
-      <strong>${reminder.title}</strong><br/>
-      Criado em: ${reminder.createdAt.toLocaleString()}<br/>
-      <button onclick="deleteReminder(${reminder.id})">Excluir</button>
-    `;
+      <strong>${lembrete.title}</strong><br/>
+  <span style="color: gray;">Criado em: ${lembrete.date.toLocaleString()}</span><br/>
+  <button onclick="excluir(${lembrete.id})">Excluir</button>`;
     list.appendChild(li);
   });
 }
 
 // @ts-ignore
-window.deleteReminder = (id: number) => {
-  reminders = reminders.filter(r => r.id !== id);
-  renderReminders();
+window.excluir = (id: number) => {
+  //console.log(id);
+  arrayLembrete = arrayLembrete.filter(lembrete => lembrete.id !== id);  //tira o id da lista e renderiza novamente
+  render();
 };
